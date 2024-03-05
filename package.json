@@ -1,6 +1,6 @@
 {
-  "name": "@wow-actions/parse-inputs",
-  "version": "2.0.1",
+  "name": "@ericjuden/wow-actions-parse-inputs",
+  "version": "2.0.2",
   "description": "Utility method to parse action's inputs",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -68,12 +68,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wow-actions/parse-inputs.git"
+    "url": "git+https://github.com/ericjuden/wow-actions-parse-inputs.git"
   },
   "bugs": {
-    "url": "https://github.com/wow-actions/parse-inputs/issues"
+    "url": "https://github.com/ericjuden/wow-actions-parse-inputs/issues"
   },
-  "homepage": "https://github.com/wow-actions/parse-inputs#readme",
+  "homepage": "https://github.com/ericjuden/wow-actions-parse-inputs#readme",
   "dependencies": {
     "js-yaml": "^4.1.0",
     "lodash.camelcase": "^4.3.0",

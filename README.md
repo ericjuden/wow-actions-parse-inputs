@@ -5,13 +5,13 @@ Utility method to parse action's inputs
 ## Installation
 
 ```shell
-$ npm install @wow-actions/parse-inputs --save
+$ npm install @ericjuden/wow-actions-parse-inputs --save
 ```
 
 ## Usage
 
 ```ts
-import parseInputs from '@wow-actions/parse-inputs';
+import parseInputs from '@ericjuden/wow-actions-parse-inputs';
 
 const inputs = parseInputs({
   foo: { type: 'boolean' },

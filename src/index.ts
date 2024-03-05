@@ -24,7 +24,8 @@ function getInput<T extends Types>(
   }
 
   if (options.required) {
-    throw new Error(`Input required and not supplied: ${key}`)
+    core.debug(`Input required and not supplied: ${key}`);
+    throw new Error(`Input required and not supplied: ${key}`);
   }
 
   if (options.defaultValue != null) {
@@ -39,18 +40,23 @@ function getInput<T extends Types>(
 type DefaultValueTypes = string | number | boolean | Array<any> | object
 
 export function parseInputs<S extends Record<string, Options>>(schema: S) {
-  return Object.keys(schema).reduce<{
-    [K in keyof S]: S[K]['required'] extends true
-      ? TypeMap[S[K]['type']]
-      : S[K]['defaultValue'] extends DefaultValueTypes
-      ? TypeMap[S[K]['type']]
-      : S[K]['type'] extends ArrayTypes
-      ? TypeMap[S[K]['type']]
-      : TypeMap[S[K]['type']] | undefined
-  }>((memo, key) => {
-    memo[key as keyof S] = getInput(key, schema[key]) as any
-    return memo
-  }, {} as any)
+  try {
+    return Object.keys(schema).reduce<{
+      [K in keyof S]: S[K]['required'] extends true
+        ? TypeMap[S[K]['type']]
+        : S[K]['defaultValue'] extends DefaultValueTypes
+        ? TypeMap[S[K]['type']]
+        : S[K]['type'] extends ArrayTypes
+        ? TypeMap[S[K]['type']]
+        : TypeMap[S[K]['type']] | undefined
+    }>((memo, key) => {
+      memo[key as keyof S] = getInput(key, schema[key]) as any
+      return memo
+    }, {} as any)
+  } catch (err) {
+    core.debug(`Error while parsing inputs: ${err.message}`);
+    throw err;
+  }
 }
 
 export default parseInputs
